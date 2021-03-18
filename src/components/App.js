@@ -1,10 +1,15 @@
 import React, { useState } from 'react';
 
-import SingIn from './SignIn.js'
+import Main from './Main';
+import SignIn from './SignIn';
 
 export default () => {
   const [name, setName] = useState('');
-  console.log({ name })
-  
-  return <SingIn setName={setName} />;
+  console.log({ name });
+
+  if (name === ''){
+    return <SignIn setName={setName} />;
+  } else {
+    return <Main name={name} />;
+  }
 };
