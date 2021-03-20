@@ -5,13 +5,13 @@ import { pushMessage } from '../firebase';
 
 const MessageField = ({ inputEl, name, setText, text }) => {
     const [isComposed, setIsComposed] = useState(false);
+
     return (
         <TextField
         autoFocus
         fullWidth={true}
-        onChange={(e) => {
-            setText(e.target.value);
-        }}
+        inputRef={inputEl}
+        onChange={(e) => setText(e.target.value)}
         onKeyDown={(e) => {
             if(isComposed) return;
 
@@ -19,7 +19,7 @@ const MessageField = ({ inputEl, name, setText, text }) => {
             if(text === '') return;
 
             if( e.key === 'Enter') {
-              pushMessage({name:　'はむさん', text});
+              pushMessage({ name, text });
               setText('');
               e.preventDefault();
             }
